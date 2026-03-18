@@ -10,7 +10,7 @@ export const siteConfig = {
     },
     {
       label: "Docs",
-      href: "/docs",
+      href: "/v1",
     },
     {
       label: "Pricing",

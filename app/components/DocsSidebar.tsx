@@ -11,13 +11,13 @@ export function DocsSidebar() {
   const pathname = usePathname();
 
   const links = [
-    { name: "Visão Geral", href: "/docs", icon: LuHouse },
-    { name: "Bate Ponto", href: "/docs/bate-ponto", icon: LuClock },
-    { name: "Ficha de Registro", href: "/docs/ficha", icon: LuFileText },
-    { name: "Envio de Ausência", href: "/docs/ausencia", icon: RiZzzFill },
-    { name: "Sistemas Web", href: "/docs/sistemas", icon: LuGlobe },
-    { name: "Código Penal", href: "/docs/codigo-penal", icon: LuScale },
-    { name: "Regulamentos Internos", href: "/docs/regulamentos", icon: LuBookOpenText },
+    { name: "Visão Geral", href: "/v1", icon: LuHouse },
+    { name: "Bate Ponto", href: "/v1/bate-ponto", icon: LuClock },
+    { name: "Ficha de Registro", href: "/v1/ficha", icon: LuFileText },
+    { name: "Envio de Ausência", href: "/v1/ausencia", icon: RiZzzFill },
+    { name: "Sistemas Web", href: "/v1/sistemas", icon: LuGlobe },
+    { name: "Código Penal", href: "/v1/codigo-penal", icon: LuScale },
+    { name: "Regulamentos Internos", href: "/v1/regulamentos", icon: LuBookOpenText },
   ];
 
   const containerVariants = {

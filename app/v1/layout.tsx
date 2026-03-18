@@ -1,7 +1,7 @@
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import { DocsSidebar } from "@/app/components/DocsSidebar";
 import { DocsBreadcrumbs } from "@/app/components/DocsBreadcrumbs";
-import { PageTransition } from "@/app/components/PageTransition";
+import { PageTransition } from "@/app/components/DocsPageTransition";
 
 export default function DocsLayout({
   children,

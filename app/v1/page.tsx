@@ -4,18 +4,27 @@ import { motion } from "framer-motion";
 import { Link } from "@heroui/link";
 import { Card, CardHeader, CardBody } from "@heroui/card";
 import { Divider } from "@heroui/divider";
-import { LuClock, LuFileText, LuGlobe, LuInstagram, LuMessageSquare, LuTriangleAlert, LuBug, LuScale, LuBookOpenText } from "react-icons/lu";
+import { LuClock, LuFileText, LuGlobe, LuScale, LuBookOpenText } from "react-icons/lu";
 import { title } from "@/components/primitives";
 import { RiZzzFill } from "react-icons/ri";
 import { FaDiscord, FaInstagram, FaYoutube } from "react-icons/fa";
 import { ArrowRight, HelpCircle } from "lucide-react";
+import { Button } from "@heroui/button";
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 15 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  hidden: { opacity: 0, y: -20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
 export default function DocsHomePage() {
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
 
   const socials = [
     { name: "Discord", icon: <FaDiscord size={20} />, href: "#" },
@@ -24,7 +33,7 @@ export default function DocsHomePage() {
   ];
 
   return (
-    <motion.div className="pt-6">
+    <motion.section variants={containerVariants} initial="hidden" animate="show" className="pt-6">
       <motion.div variants={itemVariants} className="mb-20">
         <h1 className={title({ size: "md", color: "blue", className: "font-black" })}>
           Bem-vindo à <span className="text-default-600">Documentação</span>
@@ -105,41 +114,42 @@ export default function DocsHomePage() {
       <motion.section variants={itemVariants} className="mb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
         <div>
-          <h3 className="flex items-center gap-2 text-white font-bold text-lg mb-3">
-            <HelpCircle size={20} className="text-primary-500" />
+          <h3 className="flex items-center gap-2 text-default-800 font-bold text-lg mb-3">
+            <HelpCircle size={20} className="text-red-500" />
             Precisa de ajuda?
           </h3>
           <p className="text-gray-400 text-sm mb-4 leading-relaxed">
             Se você não encontrou o que procurava na documentação, fale com um administrador via Discord.
           </p>
-          <Link href="#" color="primary">
+          <Link href="#" className="text-sm text-red-400 font-bold">
             Acessar Discord <ArrowRight size={14} className="ml-1" />
           </Link>
         </div>
 
         <div>
-          <h3 className="text-white font-bold text-lg mb-3">
+          <h3 className="text-default-800 font-bold text-lg mb-3">
             Nossas Redes
           </h3>
-          <p className="text-gray-400 text-sm mb-4">
+          <p className="text-default-400 text-sm mb-4">
             Acompanhe as novidades e anúncios oficiais.
           </p>
           <div className="flex gap-3">
             {socials.map((social, idx) => (
-              <a 
+              <Button
                 key={idx}
                 href={social.href}
-                className="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-gray-400 hover:bg-white/10 hover:text-white hover:border-white/10 transition-all"
                 title={social.name}
+                as={Link}
+                isIconOnly
               >
                 {social.icon}
-              </a>
+              </Button>
             ))}
           </div>
         </div>
       </div>
       </motion.section>
 
-    </motion.div>
+    </motion.section>
   );
 }

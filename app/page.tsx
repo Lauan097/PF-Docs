@@ -5,6 +5,8 @@ import { LuClock, LuFileText, LuGlobe, LuScale, LuBookOpenText } from "react-ico
 import { RiZzzFill } from "react-icons/ri";
 import { title, subtitle } from "@/components/primitives";
 import { Divider } from "@heroui/divider";
+import { ScrollShadow } from "@heroui/scroll-shadow";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const container = {
@@ -21,47 +23,51 @@ export default function Home() {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center py-16 px-6">
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-16"
-      >
-        <h1 className={title({ size: "lg", className: "flex items-center justify-center gap-2 font-black" })}>
-          <span className="text-primary">Polícia Federal</span>
-          <Divider orientation="vertical" className="h-14 mx-4" />
-          Docs
-        </h1>
-        <p className={subtitle({ className: "max-w-xl mx-auto mt-4 text-default-500" })}>
-          Central de suporte e procedimentos operacionais da Polícia Federal. 
-          Simplicidade na consulta, precisão na execução.
-        </p>
-      </motion.div>
+    <ScrollShadow hideScrollBar>
+      <section className="flex flex-col items-center justify-center py-16 px-6">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-16"
+        >
+          <h1 className={title({ size: "lg", className: "flex items-center justify-center gap-2 font-black" })}>
+            <span className="text-primary">Polícia Federal</span>
+            <Divider orientation="vertical" className="h-14 mx-4" />
+            Docs
+          </h1>
+          <p className={subtitle({ className: "max-w-xl mx-auto mt-4 text-default-500" })}>
+            Central de suporte e procedimentos operacionais da Polícia Federal. 
+            Simplicidade na consulta, precisão na execução.
+          </p>
+        </motion.div>
 
-      <Divider className="w-full max-w-4xl mb-12" />
+        <Divider className="w-full max-w-4xl mb-12" />
 
-      <motion.div 
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 w-full max-w-4xl"
-      >
-        <Topic icon={<LuClock size={20}/>} label="Bate Ponto" variants={item} />
-        <Topic icon={<LuFileText size={20}/>} label="Ficha de Registro" variants={item} />
-        <Topic icon={<RiZzzFill size={20}/>} label="Envio de Ausência" variants={item} />
-        <Topic icon={<LuGlobe size={20}/>} label="Site Principal" variants={item} />
-        <Topic icon={<LuScale size={20}/>} label="Código Penal" variants={item} />
-        <Topic icon={<LuBookOpenText size={20}/>} label="Regulamentos Internos" variants={item} />
-      </motion.div>
-    </section>
+        <motion.div 
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 w-full max-w-4xl"
+        >
+          <Topic icon={<LuClock size={20}/>} label="Bate Ponto" variants={item} link="/v1/bate-ponto" />
+          <Topic icon={<LuFileText size={20}/>} label="Ficha de Registro" variants={item} link="/v1/ficha" />
+          <Topic icon={<RiZzzFill size={20}/>} label="Envio de Ausência" variants={item} link="/v1/ausencia" />
+          <Topic icon={<LuGlobe size={20}/>} label="Site Principal" variants={item} link="/v1/sistemas" />
+          <Topic icon={<LuScale size={20}/>} label="Código Penal" variants={item} link="/v1/codigo-penal" />
+          <Topic icon={<LuBookOpenText size={20}/>} label="Regulamentos Internos" variants={item} link="/v1/regulamentos" />
+        </motion.div>
+      </section>
+    </ScrollShadow>
   );
 }
 
-function Topic({ icon, label, variants }: { icon: React.ReactNode; label: string; variants: any }) {
+function Topic({ icon, label, variants, link }: { icon: React.ReactNode; label: string; variants: any, link?: string }) {
+  const router = useRouter();
   return (
     <motion.div 
       variants={variants}
       className="flex items-center gap-4 group cursor-pointer transition-colors"
+      onClick={() => router.push(link || "/v1")}
     >
       <div className="p-3 rounded-xl bg-default-100 group-hover:bg-primary/20 group-hover:text-blue-400 transition-colors">
         {icon}

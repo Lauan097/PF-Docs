@@ -4,7 +4,6 @@ import { Link } from "@heroui/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
-import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import Image from "next/image";
@@ -14,7 +13,7 @@ export const metadata: Metadata = {
     default: "Docs - Polícia Federal",
     template: `%s - Polícia Federal`,
   },
-  description: siteConfig.description,
+  description: "Documentação Oficial da Polícia Federal - Legacy RP. Central de suporte e procedimentos operacionais. Simplicidade na consulta, precisão na execução.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -43,7 +42,7 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen overflow-hidden">
-            <Navbar />
+            <Navbar />       
             
             <main className="flex-1 overflow-hidden flex flex-col w-full">
               {children}
