@@ -169,6 +169,11 @@ export default function BatePontoPage() {
               </CardBody>
             </Card>
 
+            <p className="text-danger-400 text-sm italic">
+              Caso você for patrulhar com algum membro que não possua permissão para iniciar pontos, adicione ele no campo
+              de informações inicias, para fins de registros.
+            </p>
+
           </div>
           <Divider className="my-12" />
         </motion.div>
